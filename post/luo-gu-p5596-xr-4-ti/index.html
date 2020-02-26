@@ -4,94 +4,102 @@
     <meta charset="utf-8" >
 
 <title>洛谷 P5596 【XR-4】题 | My Blogs</title>
-<meta name="description" content="向北方的个人博客">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://zmxqs.github.io/favicon.ico?v=1582687492467">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="shortcut icon" href="https://zmxqs.github.io/favicon.ico?v=1582687588568">
 <link rel="stylesheet" href="https://zmxqs.github.io/styles/main.css">
 
 
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
 
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
+
+    <meta name="description" content="原题链接
+本题只要 推式子 就可以了。
+y2−x2=ax+by^2-x^2=ax + b
+y2−x2=ax+b
+ax+x2=y2−ba x + x^2 = y^2 - b
+ax+x2=y2−b
+4x2+4ax=4y2−4b4 x^2 + 4..." />
+    <meta name="keywords" content="数论" />
   </head>
   <body>
-  
-    <nav class="navbar border fixed split-nav">
-  <div class="nav-brand">
-    <h3><a href="https://zmxqs.github.io">My Blogs</a></h3>
-  </div>
-  <div class="collapsible">
-    <input id="collapsible1" type="checkbox" name="collapsible1">
-    <button>
-      <label for="collapsible1">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </label>
-    </button>
-    <div class="collapsible-body">
-      <ul class="inline">
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://zmxqs.github.io">
+        <img src="https://zmxqs.github.io/images/avatar.png?v=1582687588568" class="site-logo">
+        <h1 class="site-title">My Blogs</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
         
-          <li>
-            
-              <a href="/" class="menu">
-                首页
-              </a>
-            
-          </li>
+          <a href="/" class="site-nav">
+            首页
+          </a>
         
-          <li>
-            
-              <a href="/archives" class="menu">
-                归档
-              </a>
-            
-          </li>
+      
         
-          <li>
-            
-              <a href="/tags" class="menu">
-                标签
-              </a>
-            
-          </li>
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
         
-          <li>
-            
-              <a href="/post/about" class="menu">
-                关于
-              </a>
-            
-          </li>
+      
         
-      </ul>
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
     </div>
   </div>
-</nav>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      向北方的个人博客
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://zmxqs.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
 
-    <div id="top" class="row site">
-      <div class="sm-12 md-8 col">
-        <div class="paper">
-          <article class="article">
-            <h1>洛谷 P5596 【XR-4】题</h1>
-            <p class="article-meta">
-              2020-02-25
-              
-                <a href="https://zmxqs.github.io/tag/WzP8kWsUh/" class="badge warning">
-                  数论
-                </a>
-              
-            </p>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">洛谷 P5596 【XR-4】题</h2>
+            <div class="post-date">2020-02-25</div>
             
-            <div class="post-content">
+            <div class="post-content" v-pre>
               <p><a href="https://www.luogu.com.cn/problem/P5596">原题链接</a></p>
 <p>本题只要 <strong>推式子</strong> 就可以了。</p>
 <p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>y</mi><mn>2</mn></msup><mo>−</mo><msup><mi>x</mi><mn>2</mn></msup><mo>=</mo><mi>a</mi><mi>x</mi><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">y^2-x^2=ax + b
@@ -118,120 +126,49 @@ s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
 s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.12661100000000003em;"><span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，此时有：</p>
 
             </div>
-          </article>
-        </div>
-        <div class="paper" data-aos="fade-in">
-          
-            <div class="next-post">
-              <div class="next">
-                下一篇
+            
+              <div class="tag-container">
+                
+                  <a href="https://zmxqs.github.io/tag/WzP8kWsUh/" class="tag">
+                    数论
+                  </a>
+                
               </div>
-              <a href="https://zmxqs.github.io/post/luo-gu-p1404-ping-jun-shu-ti-jie/">
-                <h3 class="post-title">
-                  洛谷 P1404 平均数 题解
-                </h3>
-              </a>
-            </div>
-          
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://zmxqs.github.io/post/luo-gu-p1404-ping-jun-shu-ti-jie/">
+                  <h3 class="post-title">
+                    洛谷 P1404 平均数 题解
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
         </div>
-        
       </div>
-
-      <div class="sm-12 md-4 col sidebar">
-  <div class="paper info-container">
-    <img src="https://zmxqs.github.io/images/avatar.png?v=1582687492467" class="no-responsive avatar">
-    <div class="text-muted">向北方的个人博客</div>
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      最新文章
-    </div>
-    <div class="row">
-      <ul>
-        
-          
-            <li>
-              <a href="https://zmxqs.github.io/post/fen-kuai-xue-xi-bi-ji/">分块学习笔记</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://zmxqs.github.io/post/2020223-mo-ni-sai-you-ji-andti-jie/">2020.2.23 模拟赛 游记&amp;题解</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://zmxqs.github.io/post/mo-ni-sai-field-jie-ti-bao-gao/">2020.2.26 模拟赛 field 解题报告</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://zmxqs.github.io/post/luo-gu-p5596-xr-4-ti/">洛谷 P5596 【XR-4】题</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://zmxqs.github.io/post/luo-gu-p1404-ping-jun-shu-ti-jie/">洛谷 P1404 平均数 题解</a>
-            </li>
-          
-        
-      </ul>
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      标签列表
-    </div>
-    <div class="row">
-      
-        <a href="https://zmxqs.github.io/tag/uyTwek3J2/" class="badge warning">
-          分块
-        </a>
-      
-        <a href="https://zmxqs.github.io/tag/4g2QMjTjA/" class="badge secondary">
-          模拟赛题解
-        </a>
-      
-        <a href="https://zmxqs.github.io/tag/WzP8kWsUh/" class="badge success">
-          数论
-        </a>
-      
-    </div>
-  </div>
-  <div class="paper">
-    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://zmxqs.github.io/atom.xml" target="_blank">RSS</a>
-  </div>
-</div>
-
-
     </div>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
 <script type="application/javascript">
 
 AOS.init();
 
-hljs.initHighlightingOnLoad()
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
 
 </script>
+
+
 
 
 
