@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://zmxqs.github.io/favicon.ico?v=1582943783693">
+<link rel="shortcut icon" href="https://zmxqs.github.io/favicon.ico?v=1583038096629">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://zmxqs.github.io/styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://zmxqs.github.io">
-        <img class="avatar" src="https://zmxqs.github.io/images/avatar.png?v=1582943783693" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://zmxqs.github.io/images/avatar.png?v=1583038096629" alt="" width="32px" height="32px">
       </a>
       <a href="https://zmxqs.github.io">
         <h1 class="site-title">向北方的个人博客</h1>
@@ -164,7 +164,74 @@ int main(){
 <p>一些字符串匹配的算法 （比如 <code>KMP</code> ，<code>mancher</code> ）全部都是<strong>线性</strong>的。</p>
 <p>线段树维护一些值（可以区间合并的值，比如最大值、最小值、区间和、异或和、最大子段和等）的时间复杂度 <strong>一般来说</strong> 为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>+</mo><mi>m</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n \log n + m \log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>.其中 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 为数组长度， <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 为询问次数。</p>
 <p>而二分的时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(\log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>.其中 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 为二分的上限。当然大部分情况下 <strong>验证的时间复杂度为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>或<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></strong>，因此二分答案的时间复杂度很可能达到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n \log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 或是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>.</p>
-<p>单调队列的时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>. 一般一个优秀的程序，<code>for</code> 里面套 <code>while</code> 都可以证明是线性的。</p>
+<p>单调队列和单调栈的时间复杂度均为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>. 一般一个优秀的程序，<code>for</code> 里面套 <code>while</code> 都可以证明是线性的。（仅仅是一般）</p>
+<p>还有一些高端可持久化线段树 或是 平衡树 、树套树之类的算法， 时间复杂度都可能达到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo><mi mathvariant="normal">，</mi><mi>O</mi><mo>(</mo><mi>n</mi><msup><mi>log</mi><mo>⁡</mo><mn>2</mn></msup><mi>n</mi><mo>)</mo><mi mathvariant="normal">，</mi><mi>O</mi><mo>(</mo><mi>n</mi><msup><mi>log</mi><mo>⁡</mo><mn>3</mn></msup><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n \log n)，O(n {\log}^2 n)，O(n {\log}^3 n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.148448em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mord cjk_fallback">，</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord"><span class="mord"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8984479999999999em;"><span style="top:-3.1473400000000002em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mord cjk_fallback">，</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord"><span class="mord"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8984479999999999em;"><span style="top:-3.1473400000000002em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 等。</p>
+<p>另外线性递推、矩阵等的算法，时间复杂度一般在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo><mi mathvariant="normal">，</mi><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>3</mn></msup><mo>)</mo><mi mathvariant="normal">，</mi><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>3</mn></msup><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^2 \log n)，O(n^3)，O(n^3 \log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mord cjk_fallback">，</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord cjk_fallback">，</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 这样的级别。（当然高斯消元也包括哦）</p>
+<p>一些奇奇怪怪的斜率算法，时间复杂度不详。请读者自行考究。</p>
+<p><strong>至少分析一个程序的时间复杂度，要弄清每个变量、数组是干嘛的，结合经验等的来判断。</strong></p>
+<h2 id="case-2-空间复杂度">Case 2. 空间复杂度</h2>
+<p>没有什么“术语名词”可说的。把上面的 <code>T</code> 改成 <code>S</code> 就可以表示空间。当然 <strong>去掉低阶项和常数项的仍然表示为大O符号。</strong> 即：</p>
+<p class='katex-block katex-error' title='ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 20: …^n+4n+1)=O(n^2)$̲$.
+
+但是，我们 **必须*…'>S(4n^n+4n+1)=O(n^2)$$.
+
+但是，我们 **必须** 知道一些 **存储单位**：
+
+1. `bit`. 二进制数中的一个数位，即 $0$ 或 $1$. 是计算机中数据的最小单位。（虽然用的很少，但是有些算法和它是有些关系的。比如 **bitset 和 树状数组。**）
+
+2. `Byte`，可缩写为 `B`，是字节，$1B=8bit$.
+
+3. `KB`，可缩写为 `K`，全称为 `Kilobyte`，是千字节，$1KB=1024B$.
+
+4. `MB`，可缩写为 `M`，全称为 `Megabyte`，是兆字节，$1MB=1024KB$.
+
+5. `GB`，可缩写为 `G`，全称为 `Gigabyte`，是吉字节，也是千兆，$1GB=1024MB$.
+
+6. `TB`，可缩写为 `T`，全称为 `Terabyte`，是万亿字节，也是太字节，$1TB=1024GB$.
+
+后面的，**可以** 了解一下：
+
+7. `PB`，全称为 `Petabyte`，是千万亿字节，也是拍字节，$1PB=1024TB$.
+
+8. `EB`，全称为 `Exabyte`，是百亿亿字节，也是艾字节，$1EB=1024PB$.
+
+9. `ZB`，全称为 `Zettabyte`，是十万亿亿字节，也是泽字节，$1ZB=1024EB$.
+
+10. `YB`，全称为 `Yottabyte`，是一亿亿亿字节，也是尧字节，$1YB=1024ZB$.
+
+11. `BB`，全称为 `Brontobyte`，是一千亿亿亿字节，$1BB=1024YB$.
+
+而 $1024=2^{10}$，所以 $1BB=1024^9={2^{10}}^9=2^{90}$.足足达到了 $28$ 位数，这是很令人惊异的。
+
+不过 **一般来说**， 题目的内存限制都会以 $MB$ 作单位。这是因为你 **必须** 知道：（下面用变量类型来代替该类型的变量）
+
+1. 一个 `char` 或者 一个 `bool` 均只占 $1$ 个字节。
+
+2. 一个 `short` 或者一个 `unsigned short` 均占 $2$ 个字节。
+
+3. 一个 `int` 或者一个 `float` 或者一个 `long`  或者一个 `long` `int` 或者一个 `unsigned` `int` 或者一个 `ubsigned long` ，均占 $4$ 个字节。
+
+4. 一个 `double` 或者一个 `long` `long` 或者一个 `long` `float`，均占 $8$ 个字节。
+
+5. 一个 `long` `double` ，占 $16$ 个字节。
+
+事实上，如果我们要知道 `long` `double` 占的字节数，只需要：
+
+```cpp
+printf(&quot;%d\n&quot;,sizeof(long double));
+```
+
+其中  `sizeof` 后面的括号里，就是一种变量类型。用这种方法可以计算上述所有的内存大小。
+
+### 空间复杂度的计算
+
+这比时间复杂度简单多了！ **在没有数组越界、指针访问非法内存等的情况下，一般来说** 一个程序的内存只要看其开的容器的大小总和。这个容器包括 **数组、$STL$、指针（指向容器）等等。** **而单个的变量，或者常数级的变量，可以忽略不计。**
+
+比方说你先 `int p[100000]`，然后再 `int a,b,c,d,e,f,g;`
+
+你想想，显然数组的开销比变量大得多啊！ **这和时间复杂度的计算有着异曲同工之妙。**
+
+具体的，有了存储单位和存储长度，做个乘法；把所有容器做个加法，大概就可以得到了。</p>
 
           </div>
         </div>
