@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://zmxqs.github.io/favicon.ico?v=1583070047605">
+<link rel="shortcut icon" href="https://zmxqs.github.io/favicon.ico?v=1583136706434">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://zmxqs.github.io/styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://zmxqs.github.io">
-        <img class="avatar" src="https://zmxqs.github.io/images/avatar.png?v=1583070047605" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://zmxqs.github.io/images/avatar.png?v=1583136706434" alt="" width="32px" height="32px">
       </a>
       <a href="https://zmxqs.github.io">
         <h1 class="site-title">向北方的个人博客</h1>
@@ -231,7 +231,115 @@ printf(&quot;%d\n&quot;,sizeof(long double));
 
 你想想，显然数组的开销比变量大得多啊！ **这和时间复杂度的计算有着异曲同工之妙。**
 
-具体的，有了存储单位和存储长度，做个乘法；把所有容器做个加法，大概就可以得到了。</p>
+具体的，有了存储单位和存储长度，做个乘法；把所有容器做个加法，大概就可以得到了。
+
+## Case 3. 如何优化算法复杂度
+
+### Case 3.1 时间复杂度
+
+对于大部分情况，优化时间复杂度分为两类：
+
+- 常数上的优化
+
+- 算法（数据结构）上的优化
+
+对于第一类，注意以下几条即可：
+
+1. 将 `int` 改为 `register int`（循环变量名中可使用）
+
+2. 在程序第一行添加 `#pragma GCC optimize(2)`
+
+3.  在所有函数前加 `inline`. **注明：有些人说该方法针对递归函数会出错，但笔者大量的实践表明，不会出错，只会更快。**
+
+4. 将输入输出的 `cin` 或者 `scanf` 全部改为快读快输模板。
+
+模板如下：
+
+```cpp
+template &lt;typename _tp&gt; inline _tp read(_tp&amp;x){
+    char ch=getchar(),sgn=0;x=0;
+    while(ch^&#039;-&#039;&amp;&amp;!isdigit(ch))ch=getchar();if(ch==&#039;-&#039;)ch=getchar(),sgn=1;
+    while(isdigit(ch))x=x*10+ch-&#039;0&#039;,ch=getchar();if(sgn)x=-x;return x;
+}
+```
+
+这是快读模板。然后有了这个函数，我们读入一个数只需要：
+
+```cpp
+int x; read(x);
+```
+
+下面是一份输出模板
+
+```cpp
+inline void write(int x) {
+	if(x&lt;10) {putchar(char(x%10+&#039;0&#039;));return;}
+	write(x/10); putchar(char(x%10+&#039;0&#039;))
+}
+
+```
+
+然后输出一个数（如果类型不是 `int` ，只要在函数开头更改）这样子：
+
+```cpp
+write(x);
+```
+
+上述 $4$ 个方法对大多数题目已经足够。如果对卡常数还有一定的兴趣，可以去参考一些资料：
+
+1. 了解一下 **王逸松** 这位选手，在 `WC2017` 的出题中，给了世界一道 [卡常三合一](https://loj.ac/problem/2286)，用百度百科的话，就是“让无数选手苦思冥想，并在其中提出了“松式基排”的概念。”甚至优秀的复杂度称为 $O(wys)$.
+
+并且，该题的第一个 `Task` 就要求给 $2 \times 10^8$ 个数进行排序，基数排序还一定要选对进制，不然就是一个 $TLE$...
+
+2. 了解一下成都七中的 `nzhtl1477` 巨佬，给出了 `Ynoi` 系列（不是云南 $OI$ ，是由乃 $OI$ ）。其中“以对常数与时间复杂度的严格要求、极高的难度、优美而冗长的题面以及与题面毫不相关的题目著称。大多使用数列分块算法，但也不乏对线段树、平衡树、计算几何等考点的考察。” [Ynoi 系列](https://www.luogu.com.cn/problem/list?keyword=Ynoi&amp;page=1) 大都是紫题和黑题，这也是 `nzhtl1477` 成为了一名卡常级宗师。
+
+而对于后者，常常需要重构代码。
+
+一般的方法有：
+
+1. 用高级数据结构维护一些需要暴力的数组。（比如线段树、平衡树等等）
+
+2. 将需要不断尝试答案的算法，改为爬山，或者是二分、三分等。
+
+3. 对一些搜索，加以可行性剪枝。
+
+4. 如果是动态规划，那么尝试用改变状态来改变程序。（比如 $LIS$ ）
+
+5. 套板子（比如快速幂），用高级算法（比如 $KMP$ ）维护等。
+
+6. 对有单调性的东西可以直接队列上！
+
+冗余方法不再赘述。
+
+### Case 3.2 空间复杂度
+
+空间复杂度的优化其实没有必要，但是某种场合下还是需要的。
+
+1. 把冗余空间清除。
+
+比如看这样一个例子：
+
+---
+
+给出 $n$ 个数，求这 $n$ 个数中前 $k$ 小的 $k$ 个数。
+
+数据范围： $n \leq 10^6$，$k \leq 10^3$.
+
+限制：时间 $1000ms$，空间 $10MB$.
+
+---
+
+你会发现如果直接存下来排序的话，空间是无法存下的。
+
+所以，我们发现每次只要知道前 $k$ 小的这 $k$ 个数，所以数组只需要开 $10^3$ 个记录。
+
+对于一个新加的数，因为数组的记录是有序的，用二分找到它的位置插入即可；至于插入的维护方式，可以用链表实现。时间复杂度还是 $O(n \log n)$ ,但是空间复杂度从 $O(n)$ 降到了 $O(k)$.
+
+2. 滚动数组
+
+这是一个常用的方法，尤其在 `dp` 的当中，如果你发现某个状态中的某个数，每次只决定于它前面那个状态的数，那么就可以滚动，一层层地覆盖。
+
+其余的方法，因为现在还没有一个人专门卡空间，因此尚未得出其它结论。</p>
 
           </div>
         </div>
