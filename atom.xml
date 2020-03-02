@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zmxqs.github.io</id>
     <title>向北方的个人博客</title>
-    <updated>2020-03-02T08:11:49.659Z</updated>
+    <updated>2020-03-02T08:12:44.200Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zmxqs.github.io"/>
     <link rel="self" href="https://zmxqs.github.io/atom.xml"/>
@@ -475,175 +475,171 @@ int main(){
 <p><strong>至少分析一个程序的时间复杂度，要弄清每个变量、数组是干嘛的，结合经验等的来判断。</strong></p>
 <h2 id="case-2-空间复杂度">Case 2. 空间复杂度</h2>
 <p>没有什么“术语名词”可说的。把上面的 <code>T</code> 改成 <code>S</code> 就可以表示空间。当然 <strong>去掉低阶项和常数项的仍然表示为大O符号。</strong> 即：</p>
-<p class='katex-block katex-error' title='ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 20: …^n+4n+1)=O(n^2)$̲$.
-
-但是，我们 **必须*…'>S(4n^n+4n+1)=O(n^2)$$.
-
-但是，我们 **必须** 知道一些 **存储单位**：
-
-1. `bit`. 二进制数中的一个数位，即 $0$ 或 $1$. 是计算机中数据的最小单位。（虽然用的很少，但是有些算法和它是有些关系的。比如 **bitset 和 树状数组。**）
-
-2. `Byte`，可缩写为 `B`，是字节，$1B=8bit$.
-
-3. `KB`，可缩写为 `K`，全称为 `Kilobyte`，是千字节，$1KB=1024B$.
-
-4. `MB`，可缩写为 `M`，全称为 `Megabyte`，是兆字节，$1MB=1024KB$.
-
-5. `GB`，可缩写为 `G`，全称为 `Gigabyte`，是吉字节，也是千兆，$1GB=1024MB$.
-
-6. `TB`，可缩写为 `T`，全称为 `Terabyte`，是万亿字节，也是太字节，$1TB=1024GB$.
-
-后面的，**可以** 了解一下：
-
-7. `PB`，全称为 `Petabyte`，是千万亿字节，也是拍字节，$1PB=1024TB$.
-
-8. `EB`，全称为 `Exabyte`，是百亿亿字节，也是艾字节，$1EB=1024PB$.
-
-9. `ZB`，全称为 `Zettabyte`，是十万亿亿字节，也是泽字节，$1ZB=1024EB$.
-
-10. `YB`，全称为 `Yottabyte`，是一亿亿亿字节，也是尧字节，$1YB=1024ZB$.
-
-11. `BB`，全称为 `Brontobyte`，是一千亿亿亿字节，$1BB=1024YB$.
-
-而 $1024=2^{10}$，所以 $1BB=1024^9={2^{10}}^9=2^{90}$.足足达到了 $28$ 位数，这是很令人惊异的。
-
-不过 **一般来说**， 题目的内存限制都会以 $MB$ 作单位。这是因为你 **必须** 知道：（下面用变量类型来代替该类型的变量）
-
-1. 一个 `char` 或者 一个 `bool` 均只占 $1$ 个字节。
-
-2. 一个 `short` 或者一个 `unsigned short` 均占 $2$ 个字节。
-
-3. 一个 `int` 或者一个 `float` 或者一个 `long`  或者一个 `long` `int` 或者一个 `unsigned` `int` 或者一个 `ubsigned long` ，均占 $4$ 个字节。
-
-4. 一个 `double` 或者一个 `long` `long` 或者一个 `long` `float`，均占 $8$ 个字节。
-
-5. 一个 `long` `double` ，占 $16$ 个字节。
-
-事实上，如果我们要知道 `long` `double` 占的字节数，只需要：
-
-```cpp
-printf(&quot;%d\n&quot;,sizeof(long double));
-```
-
-其中  `sizeof` 后面的括号里，就是一种变量类型。用这种方法可以计算上述所有的内存大小。
-
-### 空间复杂度的计算
-
-这比时间复杂度简单多了！ **在没有数组越界、指针访问非法内存等的情况下，一般来说** 一个程序的内存只要看其开的容器的大小总和。这个容器包括 **数组、$STL$、指针（指向容器）等等。** **而单个的变量，或者常数级的变量，可以忽略不计。**
-
-比方说你先 `int p[100000]`，然后再 `int a,b,c,d,e,f,g;`
-
-你想想，显然数组的开销比变量大得多啊！ **这和时间复杂度的计算有着异曲同工之妙。**
-
-具体的，有了存储单位和存储长度，做个乘法；把所有容器做个加法，大概就可以得到了。
-
-## Case 3. 如何优化算法复杂度
-
-### Case 3.1 时间复杂度
-
-对于大部分情况，优化时间复杂度分为两类：
-
-- 常数上的优化
-
-- 算法（数据结构）上的优化
-
-对于第一类，注意以下几条即可：
-
-1. 将 `int` 改为 `register int`（循环变量名中可使用）
-
-2. 在程序第一行添加 `#pragma GCC optimize(2)`
-
-3.  在所有函数前加 `inline`. **注明：有些人说该方法针对递归函数会出错，但笔者大量的实践表明，不会出错，只会更快。**
-
-4. 将输入输出的 `cin` 或者 `scanf` 全部改为快读快输模板。
-
-模板如下：
-
-```cpp
-template &lt;typename _tp&gt; inline _tp read(_tp&amp;x){
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>(</mo><mn>4</mn><msup><mi>n</mi><mi>n</mi></msup><mo>+</mo><mn>4</mn><mi>n</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo>=</mo><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">S(4n^n+4n+1)=O(n^2)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mopen">(</span><span class="mord">4</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">4</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.1141079999999999em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
+<p>但是，我们 <strong>必须</strong> 知道一些 <strong>存储单位</strong>：</p>
+<ol>
+<li>
+<p><code>bit</code>. 二进制数中的一个数位，即 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 或 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>. 是计算机中数据的最小单位。（虽然用的很少，但是有些算法和它是有些关系的。比如 <strong>bitset 和 树状数组。</strong>）</p>
+</li>
+<li>
+<p><code>Byte</code>，可缩写为 <code>B</code>，是字节，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mi>B</mi><mo>=</mo><mn>8</mn><mi>b</mi><mi>i</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">1B=8bit</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord">8</span><span class="mord mathdefault">b</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span></span></span></span>.</p>
+</li>
+<li>
+<p><code>KB</code>，可缩写为 <code>K</code>，全称为 <code>Kilobyte</code>，是千字节，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mi>K</mi><mi>B</mi><mo>=</mo><mn>1024</mn><mi>B</mi></mrow><annotation encoding="application/x-tex">1KB=1024B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">2</span><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span>.</p>
+</li>
+<li>
+<p><code>MB</code>，可缩写为 <code>M</code>，全称为 <code>Megabyte</code>，是兆字节，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mi>M</mi><mi>B</mi><mo>=</mo><mn>1024</mn><mi>K</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">1MB=1024KB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">2</span><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span>.</p>
+</li>
+<li>
+<p><code>GB</code>，可缩写为 <code>G</code>，全称为 <code>Gigabyte</code>，是吉字节，也是千兆，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mi>G</mi><mi>B</mi><mo>=</mo><mn>1024</mn><mi>M</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">1GB=1024MB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord mathdefault">G</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">2</span><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span>.</p>
+</li>
+<li>
+<p><code>TB</code>，可缩写为 <code>T</code>，全称为 <code>Terabyte</code>，是万亿字节，也是太字节，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mi>T</mi><mi>B</mi><mo>=</mo><mn>1024</mn><mi>G</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">1TB=1024GB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">2</span><span class="mord">4</span><span class="mord mathdefault">G</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span>.</p>
+</li>
+</ol>
+<p>后面的，<strong>可以</strong> 了解一下：</p>
+<ol start="7">
+<li>
+<p><code>PB</code>，全称为 <code>Petabyte</code>，是千万亿字节，也是拍字节，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mi>P</mi><mi>B</mi><mo>=</mo><mn>1024</mn><mi>T</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">1PB=1024TB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">2</span><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span>.</p>
+</li>
+<li>
+<p><code>EB</code>，全称为 <code>Exabyte</code>，是百亿亿字节，也是艾字节，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mi>E</mi><mi>B</mi><mo>=</mo><mn>1024</mn><mi>P</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">1EB=1024PB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">2</span><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span>.</p>
+</li>
+<li>
+<p><code>ZB</code>，全称为 <code>Zettabyte</code>，是十万亿亿字节，也是泽字节，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mi>Z</mi><mi>B</mi><mo>=</mo><mn>1024</mn><mi>E</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">1ZB=1024EB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">2</span><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span>.</p>
+</li>
+<li>
+<p><code>YB</code>，全称为 <code>Yottabyte</code>，是一亿亿亿字节，也是尧字节，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mi>Y</mi><mi>B</mi><mo>=</mo><mn>1024</mn><mi>Z</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">1YB=1024ZB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">2</span><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span>.</p>
+</li>
+<li>
+<p><code>BB</code>，全称为 <code>Brontobyte</code>，是一千亿亿亿字节，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mi>B</mi><mi>B</mi><mo>=</mo><mn>1024</mn><mi>Y</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">1BB=1024YB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">2</span><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span>.</p>
+</li>
+</ol>
+<p>而 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1024</mn><mo>=</mo><msup><mn>2</mn><mn>10</mn></msup></mrow><annotation encoding="application/x-tex">1024=2^{10}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">2</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span>，所以 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mi>B</mi><mi>B</mi><mo>=</mo><mn>102</mn><msup><mn>4</mn><mn>9</mn></msup><mo>=</mo><msup><msup><mn>2</mn><mn>10</mn></msup><mn>9</mn></msup><mo>=</mo><msup><mn>2</mn><mn>90</mn></msup></mrow><annotation encoding="application/x-tex">1BB=1024^9={2^{10}}^9=2^{90}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">2</span><span class="mord"><span class="mord">4</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">9</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.018116em;vertical-align:0em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.018116em;"><span style="top:-3.267008em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">9</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">9</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span>.足足达到了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>28</mn></mrow><annotation encoding="application/x-tex">28</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">8</span></span></span></span> 位数，这是很令人惊异的。</p>
+<p>不过 <strong>一般来说</strong>， 题目的内存限制都会以 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">MB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span> 作单位。这是因为你 <strong>必须</strong> 知道：（下面用变量类型来代替该类型的变量）</p>
+<ol>
+<li>
+<p>一个 <code>char</code> 或者 一个 <code>bool</code> 均只占 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 个字节。</p>
+</li>
+<li>
+<p>一个 <code>short</code> 或者一个 <code>unsigned short</code> 均占 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 个字节。</p>
+</li>
+<li>
+<p>一个 <code>int</code> 或者一个 <code>float</code> 或者一个 <code>long</code>  或者一个 <code>long</code> <code>int</code> 或者一个 <code>unsigned</code> <code>int</code> 或者一个 <code>ubsigned long</code> ，均占 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span> 个字节。</p>
+</li>
+<li>
+<p>一个 <code>double</code> 或者一个 <code>long</code> <code>long</code> 或者一个 <code>long</code> <code>float</code>，均占 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>8</mn></mrow><annotation encoding="application/x-tex">8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span></span></span></span> 个字节。</p>
+</li>
+<li>
+<p>一个 <code>long</code> <code>double</code> ，占 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>16</mn></mrow><annotation encoding="application/x-tex">16</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">6</span></span></span></span> 个字节。</p>
+</li>
+</ol>
+<p>事实上，如果我们要知道 <code>long</code> <code>double</code> 占的字节数，只需要：</p>
+<pre><code class="language-cpp">printf(&quot;%d\n&quot;,sizeof(long double));
+</code></pre>
+<p>其中  <code>sizeof</code> 后面的括号里，就是一种变量类型。用这种方法可以计算上述所有的内存大小。</p>
+<h3 id="空间复杂度的计算">空间复杂度的计算</h3>
+<p>这比时间复杂度简单多了！ <strong>在没有数组越界、指针访问非法内存等的情况下，一般来说</strong> 一个程序的内存只要看其开的容器的大小总和。这个容器包括 <strong>数组、<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mi>T</mi><mi>L</mi></mrow><annotation encoding="application/x-tex">STL</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault">L</span></span></span></span>、指针（指向容器）等等。</strong> <strong>而单个的变量，或者常数级的变量，可以忽略不计。</strong></p>
+<p>比方说你先 <code>int p[100000]</code>，然后再 <code>int a,b,c,d,e,f,g;</code></p>
+<p>你想想，显然数组的开销比变量大得多啊！ <strong>这和时间复杂度的计算有着异曲同工之妙。</strong></p>
+<p>具体的，有了存储单位和存储长度，做个乘法；把所有容器做个加法，大概就可以得到了。</p>
+<h2 id="case-3-如何优化算法复杂度">Case 3. 如何优化算法复杂度</h2>
+<h3 id="case-31-时间复杂度">Case 3.1 时间复杂度</h3>
+<p>对于大部分情况，优化时间复杂度分为两类：</p>
+<ul>
+<li>
+<p>常数上的优化</p>
+</li>
+<li>
+<p>算法（数据结构）上的优化</p>
+</li>
+</ul>
+<p>对于第一类，注意以下几条即可：</p>
+<ol>
+<li>
+<p>将 <code>int</code> 改为 <code>register int</code>（循环变量名中可使用）</p>
+</li>
+<li>
+<p>在程序第一行添加 <code>#pragma GCC optimize(2)</code></p>
+</li>
+<li>
+<p>在所有函数前加 <code>inline</code>. <strong>注明：有些人说该方法针对递归函数会出错，但笔者大量的实践表明，不会出错，只会更快。</strong></p>
+</li>
+<li>
+<p>将输入输出的 <code>cin</code> 或者 <code>scanf</code> 全部改为快读快输模板。</p>
+</li>
+</ol>
+<p>模板如下：</p>
+<pre><code class="language-cpp">template &lt;typename _tp&gt; inline _tp read(_tp&amp;x){
     char ch=getchar(),sgn=0;x=0;
-    while(ch^&#039;-&#039;&amp;&amp;!isdigit(ch))ch=getchar();if(ch==&#039;-&#039;)ch=getchar(),sgn=1;
-    while(isdigit(ch))x=x*10+ch-&#039;0&#039;,ch=getchar();if(sgn)x=-x;return x;
+    while(ch^'-'&amp;&amp;!isdigit(ch))ch=getchar();if(ch=='-')ch=getchar(),sgn=1;
+    while(isdigit(ch))x=x*10+ch-'0',ch=getchar();if(sgn)x=-x;return x;
 }
-```
-
-这是快读模板。然后有了这个函数，我们读入一个数只需要：
-
-```cpp
-int x; read(x);
-```
-
-下面是一份输出模板
-
-```cpp
-inline void write(int x) {
-	if(x&lt;10) {putchar(char(x%10+&#039;0&#039;));return;}
-	write(x/10); putchar(char(x%10+&#039;0&#039;))
+</code></pre>
+<p>这是快读模板。然后有了这个函数，我们读入一个数只需要：</p>
+<pre><code class="language-cpp">int x; read(x);
+</code></pre>
+<p>下面是一份输出模板</p>
+<pre><code class="language-cpp">inline void write(int x) {
+	if(x&lt;10) {putchar(char(x%10+'0'));return;}
+	write(x/10); putchar(char(x%10+'0'))
 }
 
-```
-
-然后输出一个数（如果类型不是 `int` ，只要在函数开头更改）这样子：
-
-```cpp
-write(x);
-```
-
-上述 $4$ 个方法对大多数题目已经足够。如果对卡常数还有一定的兴趣，可以去参考一些资料：
-
-1. 了解一下 **王逸松** 这位选手，在 `WC2017` 的出题中，给了世界一道 [卡常三合一](https://loj.ac/problem/2286)，用百度百科的话，就是“让无数选手苦思冥想，并在其中提出了“松式基排”的概念。”甚至优秀的复杂度称为 $O(wys)$.
-
-并且，该题的第一个 `Task` 就要求给 $2 \times 10^8$ 个数进行排序，基数排序还一定要选对进制，不然就是一个 $TLE$...
-
-2. 了解一下成都七中的 `nzhtl1477` 巨佬，给出了 `Ynoi` 系列（不是云南 $OI$ ，是由乃 $OI$ ）。其中“以对常数与时间复杂度的严格要求、极高的难度、优美而冗长的题面以及与题面毫不相关的题目著称。大多使用数列分块算法，但也不乏对线段树、平衡树、计算几何等考点的考察。” [Ynoi 系列](https://www.luogu.com.cn/problem/list?keyword=Ynoi&amp;page=1) 大都是紫题和黑题，这也是 `nzhtl1477` 成为了一名卡常级宗师。
-
-而对于后者，常常需要重构代码。
-
-一般的方法有：
-
-1. 用高级数据结构维护一些需要暴力的数组。（比如线段树、平衡树等等）
-
-2. 将需要不断尝试答案的算法，改为爬山，或者是二分、三分等。
-
-3. 对一些搜索，加以可行性剪枝。
-
-4. 如果是动态规划，那么尝试用改变状态来改变程序。（比如 $LIS$ ）
-
-5. 套板子（比如快速幂），用高级算法（比如 $KMP$ ）维护等。
-
-6. 对有单调性的东西可以直接队列上！
-
-冗余方法不再赘述。
-
-### Case 3.2 空间复杂度
-
-空间复杂度的优化其实没有必要，但是某种场合下还是需要的。
-
-1. 把冗余空间清除。
-
-比如看这样一个例子：
-
----
-
-给出 $n$ 个数，求这 $n$ 个数中前 $k$ 小的 $k$ 个数。
-
-数据范围： $n \leq 10^6$，$k \leq 10^3$.
-
-限制：时间 $1000ms$，空间 $10MB$.
-
----
-
-你会发现如果直接存下来排序的话，空间是无法存下的。
-
-所以，我们发现每次只要知道前 $k$ 小的这 $k$ 个数，所以数组只需要开 $10^3$ 个记录。
-
-对于一个新加的数，因为数组的记录是有序的，用二分找到它的位置插入即可；至于插入的维护方式，可以用链表实现。时间复杂度还是 $O(n \log n)$ ,但是空间复杂度从 $O(n)$ 降到了 $O(k)$.
-
-2. 滚动数组
-
-这是一个常用的方法，尤其在 `dp` 的当中，如果你发现某个状态中的某个数，每次只决定于它前面那个状态的数，那么就可以滚动，一层层地覆盖。
-
-其余的方法，因为现在还没有一个人专门卡空间，因此尚未得出其它结论。</p>
+</code></pre>
+<p>然后输出一个数（如果类型不是 <code>int</code> ，只要在函数开头更改）这样子：</p>
+<pre><code class="language-cpp">write(x);
+</code></pre>
+<p>上述 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span> 个方法对大多数题目已经足够。如果对卡常数还有一定的兴趣，可以去参考一些资料：</p>
+<ol>
+<li>了解一下 <strong>王逸松</strong> 这位选手，在 <code>WC2017</code> 的出题中，给了世界一道 <a href="https://loj.ac/problem/2286">卡常三合一</a>，用百度百科的话，就是“让无数选手苦思冥想，并在其中提出了“松式基排”的概念。”甚至优秀的复杂度称为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>w</mi><mi>y</mi><mi>s</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(wys)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord mathdefault">s</span><span class="mclose">)</span></span></span></span>.</li>
+</ol>
+<p>并且，该题的第一个 <code>Task</code> 就要求给 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>8</mn></msup></mrow><annotation encoding="application/x-tex">2 \times 10^8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span></span></span></span> 个数进行排序，基数排序还一定要选对进制，不然就是一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mi>L</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">TLE</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span>...</p>
+<ol start="2">
+<li>了解一下成都七中的 <code>nzhtl1477</code> 巨佬，给出了 <code>Ynoi</code> 系列（不是云南 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">OI</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span></span></span></span> ，是由乃 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">OI</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span></span></span></span> ）。其中“以对常数与时间复杂度的严格要求、极高的难度、优美而冗长的题面以及与题面毫不相关的题目著称。大多使用数列分块算法，但也不乏对线段树、平衡树、计算几何等考点的考察。” <a href="https://www.luogu.com.cn/problem/list?keyword=Ynoi&amp;page=1">Ynoi 系列</a> 大都是紫题和黑题，这也是 <code>nzhtl1477</code> 成为了一名卡常级宗师。</li>
+</ol>
+<p>而对于后者，常常需要重构代码。</p>
+<p>一般的方法有：</p>
+<ol>
+<li>
+<p>用高级数据结构维护一些需要暴力的数组。（比如线段树、平衡树等等）</p>
+</li>
+<li>
+<p>将需要不断尝试答案的算法，改为爬山，或者是二分、三分等。</p>
+</li>
+<li>
+<p>对一些搜索，加以可行性剪枝。</p>
+</li>
+<li>
+<p>如果是动态规划，那么尝试用改变状态来改变程序。（比如 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mi>I</mi><mi>S</mi></mrow><annotation encoding="application/x-tex">LIS</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> ）</p>
+</li>
+<li>
+<p>套板子（比如快速幂），用高级算法（比如 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>K</mi><mi>M</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KMP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span> ）维护等。</p>
+</li>
+<li>
+<p>对有单调性的东西可以直接队列上！</p>
+</li>
+</ol>
+<p>冗余方法不再赘述。</p>
+<h3 id="case-32-空间复杂度">Case 3.2 空间复杂度</h3>
+<p>空间复杂度的优化其实没有必要，但是某种场合下还是需要的。</p>
+<ol>
+<li>把冗余空间清除。</li>
+</ol>
+<p>比如看这样一个例子：</p>
+<hr>
+<p>给出 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个数，求这 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个数中前 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 小的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 个数。</p>
+<p>数据范围： <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">n \leq 10^6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">k \leq 10^3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83041em;vertical-align:-0.13597em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span>.</p>
+<p>限制：时间 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1000</mn><mi>m</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">1000ms</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord mathdefault">m</span><span class="mord mathdefault">s</span></span></span></span>，空间 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>10</mn><mi>M</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">10MB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span>.</p>
+<hr>
+<p>你会发现如果直接存下来排序的话，空间是无法存下的。</p>
+<p>所以，我们发现每次只要知道前 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 小的这 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 个数，所以数组只需要开 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">10^3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span> 个记录。</p>
+<p>对于一个新加的数，因为数组的记录是有序的，用二分找到它的位置插入即可；至于插入的维护方式，可以用链表实现。时间复杂度还是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n \log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> ,但是空间复杂度从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 降到了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>k</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(k)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">)</span></span></span></span>.</p>
+<ol start="2">
+<li>滚动数组</li>
+</ol>
+<p>这是一个常用的方法，尤其在 <code>dp</code> 的当中，如果你发现某个状态中的某个数，每次只决定于它前面那个状态的数，那么就可以滚动，一层层地覆盖。</p>
+<p>其余的方法，因为现在还没有一个人专门卡空间，因此尚未得出其它结论。</p>
 ]]></content>
     </entry>
     <entry>
