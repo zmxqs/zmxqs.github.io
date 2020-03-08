@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://zmxqs.github.io/favicon.ico?v=1583656272130">
+<link rel="shortcut icon" href="https://zmxqs.github.io/favicon.ico?v=1583659583293">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://zmxqs.github.io/styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://zmxqs.github.io">
-        <img class="avatar" src="https://zmxqs.github.io/images/avatar.png?v=1583656272130" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://zmxqs.github.io/images/avatar.png?v=1583659583293" alt="" width="32px" height="32px">
       </a>
       <a href="https://zmxqs.github.io">
         <h1 class="site-title">向北方的个人博客</h1>
@@ -316,7 +316,7 @@ int main(){
 
 
 </code></pre>
-<h2 id="case-3梅兰竹菊">Case 3.<a href="https://www.luogu.com.cn/problem/T117922">梅兰竹菊</a></h2>
+<h2 id="t3梅兰竹菊">T3.<a href="https://www.luogu.com.cn/problem/T117922">梅兰竹菊</a></h2>
 <p>这题的难度非常的低。</p>
 <p>首先可以证明，答案<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>≤</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\leq 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>.</p>
 <p>方法：枚举一个数，然后用<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>除掉它，再分解成两个数的乘积验证，旁边开个哈希就完事了。</p>
@@ -360,7 +360,7 @@ int main(){
 
 
 </code></pre>
-<h2 id="case-4树干之谜">Case 4:<a href="https://www.luogu.com.cn/problem/T118629">树干之谜</a></h2>
+<h2 id="t4树干之谜">T4.<a href="https://www.luogu.com.cn/problem/T118629">树干之谜</a></h2>
 <p>乍一眼看上去很难，还有累乘？其实就是 <strong>小学奥数题</strong> 。</p>
 <p>比方说<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">n=3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">m=3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span>时：</p>
 <p>原式</p>
@@ -383,14 +383,6 @@ inline ll read(){char ch=getchar();int f=1;while(ch&lt;'0' || ch&gt;'9') {if(ch=
 const ll MOD=1e9+7;
 ll n,m;
 ll jc[20000001];
-
-inline ll pow(ll x,ll y) {
-	ll ans=1;
-	while(y&gt;0) {
-		if(y&amp;1) ans=(ans*x)%MOD;
-		y&gt;&gt;=1; x=(x*x)%MOD;
-	} return ans;
-}
 
 ll x,y;
 
