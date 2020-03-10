@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zmxqs.github.io</id>
     <title>向北方的个人博客</title>
-    <updated>2020-03-08T09:26:26.779Z</updated>
+    <updated>2020-03-10T09:12:25.836Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zmxqs.github.io"/>
     <link rel="self" href="https://zmxqs.github.io/atom.xml"/>
@@ -10,6 +10,218 @@
     <logo>https://zmxqs.github.io/images/avatar.png</logo>
     <icon>https://zmxqs.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 向北方的个人博客</rights>
+    <entry>
+        <title type="html"><![CDATA[北方编程游戏集合 div 1 扫雷]]></title>
+        <id>https://zmxqs.github.io/post/bei-fang-bian-cheng-you-xi-ji-he-div-1-sao-lei/</id>
+        <link href="https://zmxqs.github.io/post/bei-fang-bian-cheng-you-xi-ji-he-div-1-sao-lei/">
+        </link>
+        <updated>2020-03-10T09:03:13.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>北方编程游戏集合是由 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext mathvariant="monospace">向北方</mtext></mrow><annotation encoding="application/x-tex">\texttt{向北方}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61111em;vertical-align:0em;"></span><span class="mord text"><span class="mord texttt cjk_fallback">向北方</span></span></span></span></span> 倾心推出的。</strong></p>
+<p>作者：向北方。（转载请注明出处）😃</p>
+<p>我们的口号是：</p>
+<h3 id="向着北方前进梦想永不言弃">向着北方前进，梦想永不言弃！</h3>
+<p>第一期北方编程游戏集合，我们给出一个扫雷的小程序：</p>
+<p>简介：</p>
+<p><strong>扫雷是大家在无聊的时候都会玩的一款休闲的小游戏吧。有没有想过把它用简易的小程序遍出来呢？本次div，就给大家奉上小编不到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>200</mn></mrow><annotation encoding="application/x-tex">200</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span></span></span></span> 行的精致代码：</strong></p>
+<pre><code class="language-cpp">#pragma GCC optimize(2)
+#include&lt;bits/stdc++.h&gt;
+#include&lt;windows.h&gt;
+#include&lt;time.h&gt;
+using namespace std;
+
+const int N=41;
+#define say cout&lt;&lt;&quot;亲爱的&quot;&lt;&lt;s&lt;&lt;&quot;用户：&quot;&lt;&lt;endl;
+
+inline int read(){char ch=getchar();int f=1;while(ch&lt;'0' || ch&gt;'9') {if(ch=='-') f=-f; ch=getchar();}
+	int x=0;while(ch&gt;='0' &amp;&amp; ch&lt;='9') x=(x&lt;&lt;3)+(x&lt;&lt;1)+ch-'0',ch=getchar();return x*f;}
+
+int n,m,diff,gs;
+int a[N][N],step;
+bool h[N][N];
+string s;
+
+const int dx[8]={-1,-1,-1,0,0,1,1,1};
+const int dy[8]={-1,0,1,-1,1,-1,0,1};
+
+const int dif[5][10] = {
+	{0,0,0,0,0,0,1},
+	{0,0,0,0,0,1,1},
+	{0,0,0,0,1,1,1},
+	{0,0,0,1,1,1,1}
+};
+
+bool cai[N][N];
+bool restart=0;
+bool guess[N][N];
+
+inline void dfs(int x,int y) {
+	if(x&lt;1 || y&lt;1 || x&gt;n || y&gt;m) return;
+	if(cai[x][y] || a[x][y]&lt;=1) return;
+	cai[x][y]=1;
+	dfs(x+1,y); dfs(x-1,y);
+	dfs(x,y+1); dfs(x,y-1);
+}
+
+inline void init();
+
+inline void play() {
+	say printf(&quot;OK.每回合会给出每个格子旁边八个格子的雷的个数\n&quot;);
+	printf(&quot;祝你扫雷愉快！\n&quot;);
+	Sleep(2000);
+	system(&quot;CLS&quot;);
+	say
+	while(1) {
+		printf(&quot;请开始您的第 %d 步：每次输入两个在棋盘范围内的整数\n&quot;,step+1);
+		printf(&quot;实数会被认为向下取整。当然其它不合法的或者踩在雷上的，全部会结束游戏\n\n&quot;);
+		int x=read(),y=read();
+		while(guess[x][y]) {
+			printf(&quot;该方格已经被点过。重新选择。\n\n&quot;);
+			x=read(),y=read();
+		} guess[x][y]=1;
+		if(x&lt;1 || x&gt;n || y&lt;1 || y&gt;m || h[x][y]) {
+			say printf(&quot;很遗憾：您总共存活了 %d 步\n&quot;,step);
+			printf(&quot;再接再厉！\n&quot;);
+			Sleep(2000);
+			printf(&quot;下面是这次游戏的雷的布局情况：\n\n&quot;);
+			for(int i=1;i&lt;=n;i++) {
+				for(int j=1;j&lt;=m;j++) printf(&quot;%d &quot;,h[i][j]);
+				putchar('\n');
+			}
+			Sleep(5000);
+			system(&quot;CLS&quot;);
+			memset(a,0,sizeof(a));
+			memset(h,0,sizeof(h));
+			memset(cai,0,sizeof(cai));
+			restart=1; gs=0; step=0; init();
+			exit(0); 
+		} step++;
+		if(step==gs) {
+			say printf(&quot;恭喜！您成功挑战了该难度！\n&quot;);
+			printf(&quot;是否再来一局 ？\n&quot;);
+			Sleep(2000);
+			system(&quot;CLS&quot;);
+			memset(a,0,sizeof(a));
+			memset(h,0,sizeof(h));
+			memset(cai,0,sizeof(cai));
+			restart=1; gs=0; step=0; init();
+			exit(0);
+		}
+		dfs(x,y); system(&quot;CLS&quot;);
+		cai[x][y]=1;
+		for(int i=1;i&lt;=n;i++) {
+			for(int j=1;j&lt;=m;j++) {
+				if(cai[i][j]) printf(&quot;%d &quot;,a[i][j]);
+				else printf(&quot;? &quot;);
+			} putchar('\n');
+		}
+	}
+	
+}
+
+inline void init() {
+	if(!restart) {
+		printf(&quot;请注意：本游戏与传统扫雷游戏有所不同\n&quot;);
+		printf(&quot;想开始请输入 start \n&quot;);
+		string t; cin&gt;&gt;t;
+		while(t!=&quot;start&quot;) cin&gt;&gt;t; 
+		system(&quot;CLS&quot;);
+		printf(&quot;玩家请输入您的用户名：\n&quot;);
+		printf(&quot;要求：一行，只包含字母，数字和下划线，且不超过20个字符\n\n&quot;);
+		cin&gt;&gt;s;
+		while(1) {
+			bool f=0;
+			if(s.size()&gt;20) f=1; else {
+				for(int i=0;i&lt;s.size();i++)
+					if(!isalpha(s[i]) &amp;&amp; !isdigit(s[i]) &amp;&amp; s[i]!='_') {f=1;break;}
+			}
+			if(!f) break;
+			else {
+				printf(&quot;\n请重新输入.用户名不合法.\n&quot;);
+				cin&gt;&gt;s;
+			}	
+		}
+		system(&quot;CLS&quot;);	
+	}
+	say printf(&quot;OK.下面请输入两个数，分别表示您希望扫雷的长和宽.\n&quot;);
+	printf(&quot;请注意范围是 1 ~ 40.\n\n&quot;);
+	n=read(); m=read();
+	while(n&lt;1 || n&gt;40 || m&lt;1 || m&gt;40) {
+		say printf(&quot;\n请重新输入.长度不合法.\n&quot;);
+		n=read(); m=read();
+	}
+	system(&quot;CLS&quot;);
+	say printf(&quot;OK.下面请输入你希望游戏的难度.\n&quot;);
+	printf(&quot;1表示简单，2表示中等，3表示困难，4表示终极.\n\n&quot;);
+	diff=read();
+	while(diff&lt;1 || diff&gt;4) {
+		say printf(&quot;\n请重新输入.难度不合法.\n&quot;);
+		diff=read();
+	}
+	system(&quot;CLS&quot;);
+	say printf(&quot;OK.我们正在随机生成一个 %d * %d 的棋盘\n&quot;,n,m);
+	printf(&quot;请等待大约3秒.\n&quot;);
+	for(int i=1;i&lt;=n;i++)
+	for(int j=1;j&lt;=m;j++) {
+		int x=rand()%7;
+		h[i][j]=dif[diff][x];
+		if(!dif[diff][x]) gs++;
+	}
+	for(int i=1;i&lt;=n;i++)
+	for(int j=1;j&lt;=m;j++) {
+		a[i][j]=0;
+		for(int k=0;k&lt;8;k++) {
+			int x=i+dx[k],y=j+dy[k];
+			if(x&lt;1 || x&gt;n || y&lt;1 || y&gt;m) continue;
+			a[i][j]+=h[x][y];
+		}
+	} Sleep(2500);
+	system(&quot;CLS&quot;);
+	play();
+} 
+
+int main(){
+	srand(time(NULL));
+	printf(&quot;在进入游戏之前，您可以选择背景颜色\n&quot;);
+	printf(&quot;0 = 黑色       8 = 灰色\n&quot;
+		&quot;1 = 蓝色       9 = 淡蓝色\n&quot;
+		&quot;2 = 绿色       A = 淡绿色\n&quot;
+		&quot;3 = 浅绿色     B = 淡浅绿色\n&quot;
+		&quot;4 = 红色       C = 淡红色\n&quot;
+		&quot;5 = 紫色       D = 淡紫色\n&quot;
+		&quot;6 = 黄色       E = 淡黄色\n&quot;
+		&quot;7 = 白色       F = 亮白色\n\n&quot;);
+	string s; cin&gt;&gt;s;
+	while(1) {
+		int x=s[0]-'0',y=s[0];
+		if((0&lt;=x &amp;&amp; x&lt;=9) || ('A'&lt;=y  &amp;&amp; y&lt;='F')) {
+			switch(y) {
+				case '0': system(&quot;color 00&quot;); break;
+				case '1': system(&quot;color 10&quot;); break;
+				case '2': system(&quot;color 20&quot;); break;
+				case '3': system(&quot;color 30&quot;); break;
+				case '4': system(&quot;color 40&quot;); break;
+				case '5': system(&quot;color 50&quot;); break;
+				case '6': system(&quot;color 60&quot;); break;
+				case '7': system(&quot;color 70&quot;); break;
+				case '8': system(&quot;color 80&quot;); break;
+				case '9': system(&quot;color 90&quot;); break;
+				case 'A': system(&quot;color A0&quot;); break;
+				case 'B': system(&quot;color B0&quot;); break;
+				case 'C': system(&quot;color C0&quot;); break;
+				case 'D': system(&quot;color D0&quot;); break;
+				case 'E': system(&quot;color E0&quot;); break;
+				case 'F': system(&quot;color F0&quot;); break;
+			} break;
+		} printf(&quot;颜色不合法。请重新输入\n\n&quot;);
+	}
+	system(&quot;CLS&quot;);
+	init();
+	return 0;
+}
+
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[树状数组学习笔记]]></title>
         <id>https://zmxqs.github.io/post/shu-zhuang-shu-zu-xue-xi-bi-ji/</id>
@@ -1211,99 +1423,6 @@ int main(){
 	return 0;
 }
 
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[分块学习笔记]]></title>
-        <id>https://zmxqs.github.io/post/fen-kuai-xue-xi-bi-ji/</id>
-        <link href="https://zmxqs.github.io/post/fen-kuai-xue-xi-bi-ji/">
-        </link>
-        <updated>2020-02-26T03:20:59.000Z</updated>
-        <content type="html"><![CDATA[<p>分块方法：</p>
-<p>把 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个元素每 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> 个一块，分成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⌈</mo><mfrac><mi>n</mi><mi>S</mi></mfrac><mo>⌉</mo></mrow><annotation encoding="application/x-tex">\lceil \frac{n}{S} \rceil</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.095em;vertical-align:-0.345em;"></span><span class="mopen">⌈</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.695392em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">⌉</span></span></span></span> 个块，维护每个块的加法标记和总和。</p>
-<p>对于查询操作，直接把整块的加上；非整块的暴力加。</p>
-<p>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>2</mn><mo>×</mo><mi>S</mi><mo>+</mo><mo>⌈</mo><mfrac><mi>n</mi><mi>S</mi></mfrac><mo>⌉</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">O(2 \times S+\lceil \frac{n}{S} \rceil)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.095em;vertical-align:-0.345em;"></span><span class="mopen">⌈</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.695392em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">⌉</span><span class="mclose">)</span></span></span></span></p>
-<p>对于区间加操作，整块的加标记和总和；非整块的，暴力加。</p>
-<p>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>2</mn><mo>×</mo><mi>S</mi><mo>+</mo><mo>⌈</mo><mfrac><mi>n</mi><mi>S</mi></mfrac><mo>⌉</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">O(2 \times S+\lceil \frac{n}{S} \rceil)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.095em;vertical-align:-0.345em;"></span><span class="mopen">⌈</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.695392em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">⌉</span><span class="mclose">)</span></span></span></span></p>
-<p>为让时间复杂度平衡，令<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>=</mo><msqrt><mi>n</mi></msqrt></mrow><annotation encoding="application/x-tex">S=\sqrt{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.23972em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathdefault">n</span></span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
--10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
--50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
-35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
--221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
-s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
-s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span></span></span></span>.</p>
-<p>可得，时间复杂度均摊为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>×</mo><msqrt><mi>n</mi></msqrt></mrow><annotation encoding="application/x-tex">n \times \sqrt{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.23972em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathdefault">n</span></span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
--10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
--50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
-35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
--221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
-s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
-s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span></span></span></span></p>
-<p><a href="https://www.luogu.com.cn/problem/P3372">模板题目</a></p>
-<p><strong>虽然效率不如之前写的线段树高，但是码量少，实现快。基于暴力的一种算法。</strong></p>
-<pre><code class="language-cpp">#pragma GCC optimize(2)
-#include&lt;bits/stdc++.h&gt;
-using namespace std;
-
-typedef long long ll;
-const ll MOD=LONG_LONG_MAX;
-const int N=1e6+1;
-#define EPS 1e-8
-
-inline ll read(){char ch=getchar();int f=1;while(ch&lt;'0' || ch&gt;'9') {if(ch=='-') f=-f; ch=getchar();}
-	ll x=0;while(ch&gt;='0' &amp;&amp; ch&lt;='9') x=((x&lt;&lt;3)+(x&lt;&lt;1)+ch-'0')%MOD,ch=getchar();return x*f;}
-
-int n,m,S;
-ll a[N],sum[N],add[N];
-
-inline int kuai(int x) {
-	return x/S+1; //返回i属于的块的位置
-}
-
-inline void update(int l,int r,int x) {
-	int L=kuai(l),R=kuai(r);
-	if(L==R) {
-		for(int i=l;i&lt;=r;i++) //暴力枚举这个块
-			a[i]=(a[i]+x)%MOD,sum[L]=(sum[L]+x)%MOD;
-		return;
-	}
-	for(int i=L+1;i&lt;R;i++) sum[i]=(sum[i]+x*S)%MOD,add[i]=(add[i]+x)%MOD;
-		//中间块的枚举
-	for(int i=l;i&lt;L*S;i++) a[i]=(a[i]+x)%MOD,sum[kuai(i)]=(sum[kuai(i)]+x)%MOD;
-		//左边到块末尾的枚举
-	for(int i=(R-1)*S;i&lt;=r;i++) a[i]=(a[i]+x)%MOD,sum[kuai(i)]=(sum[kuai(i)]+x)%MOD;
-		//块开始到右边的枚举
-}
-
-inline ll query(int l,int r) {
-	ll ans=0; int L=kuai(l),R=kuai(r);
-	if(L==R) {
-		for(int i=l;i&lt;=r;i++) ans=(ans+a[i]+add[L])%MOD; //暴力枚举这个块
-		return ans;
-	}
-	for(int i=L+1;i&lt;R;i++) ans=(ans+sum[i])%MOD;
-		//中间块的枚举
-	for(int i=l;i&lt;=L*S-1;i++) ans=(ans+a[i]+add[kuai(i)])%MOD;
-		//左边到块末尾的枚举
-	for(int i=(R-1)*S;i&lt;=r;i++) ans=(ans+a[i]+add[kuai(i)])%MOD;
-		//块开始到右边的枚举
-	return ans;
-}
-
-int main(){
-	n=read(); m=read(); S=sqrt(n);
-	for(int i=1;i&lt;=n;i++) a[i]=read(),sum[kuai(i)]=(sum[kuai(i)]+a[i])%MOD;
-	while(m--) {
-		int opt=read(),l=read(),r=read();
-		if(opt==2) printf(&quot;%lld\n&quot;,query(l,r));
-		else {
-			int x=read();
-			update(l,r,x);
-		}
-	}
-	return 0;
-}
 </code></pre>
 ]]></content>
     </entry>
