@@ -1,13 +1,26 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>浅析算法复杂度 | 向北方的个人博客</title>
-<link rel="shortcut icon" href="https://zmxqs.github.io/favicon.ico?v=1627476564884">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://zmxqs.github.io/favicon.ico?v=1627483300285">
 <link rel="stylesheet" href="https://zmxqs.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="浅析算法复杂度 | 向北方的个人博客 - Atom Feed" href="https://zmxqs.github.io/atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
 
@@ -17,86 +30,81 @@
 必须 指 下面是 一个 oieroieroier 必备的了解内容。
 选读 指 下面是 大多数..." />
     <meta name="keywords" content="算法复杂度" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://zmxqs.github.io">
-  <img class="avatar" src="https://zmxqs.github.io/images/avatar.png?v=1627476564884" alt="">
-  </a>
-  <h1 class="site-title">
-    向北方的个人博客
-  </h1>
-  <p class="site-description">
-    向北方的个人博客
-  </p>
-  <div class="menu-container">
-    
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://zmxqs.github.io">
+        <img src="https://zmxqs.github.io/images/avatar.png?v=1627483300285" class="site-logo">
+        <h1 class="site-title">向北方的个人博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
       
-        <a href="/" class="menu">
-          首页
-        </a>
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
       
-    
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
       
-        <a href="/archives" class="menu">
-          归档
-        </a>
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
       
-    
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
       
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+    </div>
   </div>
-  <div class="social-container">
-    
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
+      
+    </div>
+    <div class="site-description">
+      向北方的个人博客
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://zmxqs.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
   </div>
 </div>
 
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              浅析算法复杂度
-            </h2>
-            <div class="post-info">
-              <span>
-                2020-02-28
-              </span>
-              <span>
-                14 min read
-              </span>
-              
-                <a href="https://zmxqs.github.io/tag/6KMT93_CZ/" class="post-tag">
-                  # 算法复杂度
-                </a>
-              
-            </div>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">浅析算法复杂度</h2>
+            <div class="post-date">2020-02-28</div>
             
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <p><strong>今天我们来聊一聊关于算法复杂度。</strong></p>
+            <div class="post-content" v-pre>
+              <p><strong>今天我们来聊一聊关于算法复杂度。</strong></p>
 <p>算法复杂度大致可分为两部分：<strong>时间复杂度</strong> 和 <strong>空间复杂度</strong> 。（当然还有其它一些影响不大的因素，在此忽略）</p>
 <p>下文中：</p>
 <p><strong>必须</strong> 指 下面是 一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>o</mi><mi>i</mi><mi>e</mi><mi>r</mi></mrow><annotation encoding="application/x-tex">oier</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">o</span><span class="mord mathdefault">i</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span> 必备的了解内容。</p>
@@ -331,125 +339,82 @@ int main(){
 <p>这是一个常用的方法，尤其在 <code>dp</code> 的当中，如果你发现某个状态中的某个数，每次只决定于它前面那个状态的数，那么就可以滚动，一层层地覆盖。</p>
 <p>其余的方法，因为现在还没有一个人专门卡空间，因此尚未得出其它结论。</p>
 
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#case-1-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">Case 1. 时间复杂度</a>
-<ul>
-<li><a href="#%E4%B8%80%E4%BA%9B%E6%9C%AF%E8%AF%AD%E5%90%8D%E8%AF%8D">一些术语名词</a></li>
-<li><a href="#%E5%88%86%E6%9E%90%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E7%9A%84%E6%96%B9%E6%B3%95">分析时间复杂度的方法</a></li>
-</ul>
-</li>
-<li><a href="#case-2-%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">Case 2. 空间复杂度</a>
-<ul>
-<li><a href="#%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E7%9A%84%E8%AE%A1%E7%AE%97">空间复杂度的计算</a></li>
-</ul>
-</li>
-<li><a href="#case-3-%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6">Case 3. 如何优化算法复杂度</a>
-<ul>
-<li><a href="#case-31-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">Case 3.1 时间复杂度</a></li>
-<li><a href="#case-32-%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">Case 3.2 空间复杂度</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-              </div>
             </div>
-          </article>
-        </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://zmxqs.github.io/tag/6KMT93_CZ/" class="tag">
+                    算法复杂度
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://zmxqs.github.io/post/luo-gu-p1006-chuan-zhi-tiao-ti-jie/">
+                  <h3 class="post-title">
+                    洛谷 P1006 传纸条 题解
+                  </h3>
+                </a>
+              </div>
+            
 
-        
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://zmxqs.github.io/post/luo-gu-p1006-chuan-zhi-tiao-ti-jie/">
-              <h3 class="post-title">
-                洛谷 P1006 传纸条 题解
-              </h3>
-            </a>
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
           </div>
-        
 
-        
-          
-            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-<div id="gitalk-container"></div>
-
-<script>
-
-  var gitalk = new Gitalk({
-    clientID: 'zmxqs',
-    clientSecret: 'zmxqs',
-    repo: 'zmxqs.github.io',
-    owner: 'zmxqs',
-    admin: ['zmxqs'],
-    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-    distractionFreeMode: false  // Facebook-like distraction free mode
-  })
-
-  gitalk.render('gitalk-container')
-
-</script>
-
-          
-
-          
-        
-
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-  <a class="rss" href="https://zmxqs.github.io/atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
-</div>
-
+        </div>
       </div>
     </div>
 
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
     <script>
-      hljs.initHighlightingOnLoad()
 
-      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+      var gitalk = new Gitalk({
+        clientID: 'zmxqs',
+        clientSecret: 'zmxqs',
+        repo: 'zmxqs.github.io',
+        owner: 'zmxqs',
+        admin: ['zmxqs'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
 
-      // This should probably be throttled.
-      // Especially because it triggers during smooth scrolling.
-      // https://lodash.com/docs/4.17.10#throttle
-      // You could do like...
-      // window.addEventListener("scroll", () => {
-      //    _.throttle(doThatStuff, 100);
-      // });
-      // Only not doing it here to keep this Pen dependency-free.
-
-      window.addEventListener("scroll", event => {
-        let fromTop = window.scrollY;
-
-        mainNavLinks.forEach((link, index) => {
-          let section = document.getElementById(decodeURI(link.hash).substring(1));
-          let nextSection = null
-          if (mainNavLinks[index + 1]) {
-            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-          }
-          if (section.offsetTop <= fromTop) {
-            if (nextSection) {
-              if (nextSection.offsetTop > fromTop) {
-                link.classList.add("current");
-              } else {
-                link.classList.remove("current");    
-              }
-            } else {
-              link.classList.add("current");
-            }
-          } else {
-            link.classList.remove("current");
-          }
-        });
-      });
+      gitalk.render('gitalk-container')
 
     </script>
+  
+
+  
+
+
+
+
   </body>
 </html>

@@ -1,272 +1,228 @@
+<!DOCTYPE html>
 <html>
   <head>
-  <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>数论 | 向北方的个人博客</title>
-<link rel="shortcut icon" href="https://zmxqs.github.io/favicon.ico?v=1627476564884">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://zmxqs.github.io/favicon.ico?v=1627483300285">
 <link rel="stylesheet" href="https://zmxqs.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="数论 | 向北方的个人博客 - Atom Feed" href="https://zmxqs.github.io/atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-  <meta name="description" content="向北方的个人博客" />
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="向北方的个人博客">
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://zmxqs.github.io">
-  <img class="avatar" src="https://zmxqs.github.io/images/avatar.png?v=1627476564884" alt="">
-  </a>
-  <h1 class="site-title">
-    向北方的个人博客
-  </h1>
-  <p class="site-description">
-    向北方的个人博客
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-</div>
+    <div id="app" class="main">
 
-        <div class="current-tag-container">
-            <h2 class="title">
-                标签：# 数论
-            </h2> 
-        </div>
-        <div class="post-container">
-  
-    <article class="post">
-      <a href="https://zmxqs.github.io/post/luo-gu-p2568-gcd-ti-jie/">
-        <h2 class="post-title">洛谷 P2568 GCD 题解</h2>
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://zmxqs.github.io">
+        <img src="https://zmxqs.github.io/images/avatar.png?v=1627483300285" class="site-logo">
+        <h1 class="site-title">向北方的个人博客</h1>
       </a>
-      <div class="post-info">
-        <span>
-          2020-03-16
-        </span>
-        <span>
-          4 min read
-        </span>
-        
-          <a href="https://zmxqs.github.io/tag/BysiB2BSE/" class="post-tag">
-            # 素数
-          </a>
-        
-          <a href="https://zmxqs.github.io/tag/WzP8kWsUh/" class="post-tag">
-            # 数论
-          </a>
-        
-      </div>
-      
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://zmxqs.github.io/post/luo-gu-p2388-jie-cheng-zhi-cheng-ti-jie/">
-        <h2 class="post-title">洛谷 P2388 阶乘之乘 题解</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2020-03-03
-        </span>
-        <span>
-          4 min read
-        </span>
-        
-          <a href="https://zmxqs.github.io/tag/tm3pTdjxo/" class="post-tag">
-            # 阶乘
-          </a>
-        
-          <a href="https://zmxqs.github.io/tag/WzP8kWsUh/" class="post-tag">
-            # 数论
-          </a>
-        
-      </div>
-      
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://zmxqs.github.io/post/ju-zhen-cheng-fa-xue-xi-bi-ji/">
-        <h2 class="post-title">矩阵乘法学习笔记</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2020-03-02
-        </span>
-        <span>
-          1 min read
-        </span>
-        
-          <a href="https://zmxqs.github.io/tag/WzP8kWsUh/" class="post-tag">
-            # 数论
-          </a>
-        
-      </div>
-      
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://zmxqs.github.io/post/luo-gu-p1306-fei-bo-na-qi-gong-yue-shu-ti-jie/">
-        <h2 class="post-title">洛谷 P1306 斐波那契公约数 题解</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2020-03-02
-        </span>
-        <span>
-          7 min read
-        </span>
-        
-          <a href="https://zmxqs.github.io/tag/Sigk9V7f6/" class="post-tag">
-            # 最大公因数
-          </a>
-        
-          <a href="https://zmxqs.github.io/tag/SbBf-Gk5v/" class="post-tag">
-            # 矩阵
-          </a>
-        
-          <a href="https://zmxqs.github.io/tag/WzP8kWsUh/" class="post-tag">
-            # 数论
-          </a>
-        
-      </div>
-      
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://zmxqs.github.io/post/shu-lun-si-da-ding-li-he-suan-zhu-ji-ben-ding-li-de-zheng-ming-yu-bu-fen-ying-yong/">
-        <h2 class="post-title">数论四大定理的证明与部分应用（含算术基本定理）</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2020-03-01
-        </span>
-        <span>
-          17 min read
-        </span>
-        
-          <a href="https://zmxqs.github.io/tag/WzP8kWsUh/" class="post-tag">
-            # 数论
-          </a>
-        
-      </div>
-      
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://zmxqs.github.io/post/luo-gu-p5596-xr-4-ti/">
-        <h2 class="post-title">洛谷 P5596 【XR-4】题 题解</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2020-02-25
-        </span>
-        <span>
-          4 min read
-        </span>
-        
-          <a href="https://zmxqs.github.io/tag/WzP8kWsUh/" class="post-tag">
-            # 数论
-          </a>
-        
-      </div>
-      
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://zmxqs.github.io/post/luo-gu-p1404-ping-jun-shu-ti-jie/">
-        <h2 class="post-title">洛谷 P1404 平均数 题解</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2020-02-25
-        </span>
-        <span>
-          5 min read
-        </span>
-        
-          <a href="https://zmxqs.github.io/tag/WzP8kWsUh/" class="post-tag">
-            # 数论
-          </a>
-        
-      </div>
-      
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-</div>
-
-        <div class="pagination-container">
-  
-  
-</div>
-
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-  <a class="rss" href="https://zmxqs.github.io/atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
-</div>
-
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
       </div>
     </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      向北方的个人博客
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://zmxqs.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <h2 class="current-tag">标签: 数论</h2>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://zmxqs.github.io/post/luo-gu-p2568-gcd-ti-jie/">
+                  <h2 class="post-title">洛谷 P2568 GCD 题解</h2>
+                </a>
+                <div class="post-date">
+                  2020-03-16
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://zmxqs.github.io/post/luo-gu-p2388-jie-cheng-zhi-cheng-ti-jie/">
+                  <h2 class="post-title">洛谷 P2388 阶乘之乘 题解</h2>
+                </a>
+                <div class="post-date">
+                  2020-03-03
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://zmxqs.github.io/post/ju-zhen-cheng-fa-xue-xi-bi-ji/">
+                  <h2 class="post-title">矩阵乘法学习笔记</h2>
+                </a>
+                <div class="post-date">
+                  2020-03-02
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://zmxqs.github.io/post/luo-gu-p1306-fei-bo-na-qi-gong-yue-shu-ti-jie/">
+                  <h2 class="post-title">洛谷 P1306 斐波那契公约数 题解</h2>
+                </a>
+                <div class="post-date">
+                  2020-03-02
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://zmxqs.github.io/post/shu-lun-si-da-ding-li-he-suan-zhu-ji-ben-ding-li-de-zheng-ming-yu-bu-fen-ying-yong/">
+                  <h2 class="post-title">数论四大定理的证明与部分应用（含算术基本定理）</h2>
+                </a>
+                <div class="post-date">
+                  2020-03-01
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://zmxqs.github.io/post/luo-gu-p5596-xr-4-ti/">
+                  <h2 class="post-title">洛谷 P5596 【XR-4】题 题解</h2>
+                </a>
+                <div class="post-date">
+                  2020-02-25
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://zmxqs.github.io/post/luo-gu-p1404-ping-jun-shu-ti-jie/">
+                  <h2 class="post-title">洛谷 P1404 平均数 题解</h2>
+                </a>
+                <div class="post-date">
+                  2020-02-25
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+
+          <div class="pagination-container">
+  
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+
   </body>
 </html>
