@@ -1,100 +1,105 @@
+<!DOCTYPE html>
 <html>
   <head>
-  <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>自己出的题目 题解 | 向北方的个人博客</title>
-<link rel="shortcut icon" href="https://zmxqs.github.io/favicon.ico?v=1627465957441">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://zmxqs.github.io/favicon.ico?v=1627466266765">
 <link rel="stylesheet" href="https://zmxqs.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="自己出的题目 题解 | 向北方的个人博客 - Atom Feed" href="https://zmxqs.github.io/atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-  <meta name="description" content="向北方的个人博客" />
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="向北方的个人博客">
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://zmxqs.github.io">
-  <img class="avatar" src="https://zmxqs.github.io/images/avatar.png?v=1627465957441" alt="">
-  </a>
-  <h1 class="site-title">
-    向北方的个人博客
-  </h1>
-  <p class="site-description">
-    向北方的个人博客
-  </p>
-  <div class="menu-container">
-    
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://zmxqs.github.io">
+        <img src="https://zmxqs.github.io/images/avatar.png?v=1627466266765" class="site-logo">
+        <h1 class="site-title">向北方的个人博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
       
-        <a href="/" class="menu">
-          首页
-        </a>
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
       
-    
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
       
-        <a href="/archives" class="menu">
-          归档
-        </a>
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
       
-    
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
       
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+    </div>
   </div>
-  <div class="social-container">
-    
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
+      
+    </div>
+    <div class="site-description">
+      向北方的个人博客
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://zmxqs.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
   </div>
 </div>
 
-        <div class="current-tag-container">
-            <h2 class="title">
-                标签：# 自己出的题目 题解
-            </h2> 
-        </div>
-        <div class="post-container">
-  
-    <article class="post">
-      <a href="https://zmxqs.github.io/post/zi-ji-de-ti-mu-ti-jie/">
-        <h2 class="post-title">「ZROI」Round1 题解</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2020-02-26
-        </span>
-        <span>
-          16 min read
-        </span>
-        
-          <a href="https://zmxqs.github.io/tag/Ogrwzw4TV/" class="post-tag">
-            # 自己出的题目 题解
-          </a>
-        
-      </div>
-      
-      <div class="post-abstract">
-        <h2 id="前记">前记</h2>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <h2 class="current-tag">标签: 自己出的题目 题解</h2>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://zmxqs.github.io/post/zi-ji-de-ti-mu-ti-jie/">
+                  <h2 class="post-title">「ZROI」Round1 题解</h2>
+                </a>
+                <div class="post-date">
+                  2020-02-26
+                </div>
+                <div class="post-abstract">
+                  <h2 id="前记">前记</h2>
 <p>虽然本人是比赛出题的最多者，总负责人，但 <code>ZROI</code> 这个名字是团主出的。</p>
 <p>个人认为：不用反驳的 <strong>装弱 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">OI</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span></span></span></span></strong> ，至于 ”她“ 想表达什么我也不清楚。</p>
 <p>（其实题目很弱是对的）</p>
@@ -104,24 +109,39 @@
 <p>直接用算“贡献”的方式写式子也是一个不错的选择。</p>
 <p>对于：</p>
 
-      </div>
-    </article>
+                </div>
+              </div>
+              
+            </article>
+          
+
+          <div class="pagination-container">
+  
   
 </div>
 
-        <div class="pagination-container">
-  
-  
-</div>
-
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-  <a class="rss" href="https://zmxqs.github.io/atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
-</div>
-
+        </div>
       </div>
     </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+
   </body>
 </html>
