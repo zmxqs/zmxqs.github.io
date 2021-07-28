@@ -4,11 +4,14 @@
     <meta charset="utf-8" >
 
 <title>数论四大定理的证明与部分应用（含算术基本定理） | 向北方的个人博客</title>
+<meta name="description" content="向北方的个人博客">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://zmxqs.github.io/favicon.ico?v=1627476185293">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://zmxqs.github.io/favicon.ico?v=1627475876798">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://zmxqs.github.io/styles/main.css">
 
 
@@ -18,92 +21,83 @@
 
   
 
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
 
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
-
-    <meta name="description" content="首先声明：下文中所有的类似”因数“”整数“等的字眼，除特别说明，全部是对于正数而言，不包括负数或者是000。
-Case 1. 欧拉定理
-欧拉定理即：
-对于 ppp 为素数，aaa 为任意正整数，存在
-aφp≡1(modp)a^{\varph..." />
-    <meta name="keywords" content="数论" />
   </head>
   <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://zmxqs.github.io">
-        <img src="https://zmxqs.github.io/images/avatar.png?v=1627475876798" class="site-logo">
-        <h1 class="site-title">向北方的个人博客</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
-    </div>
-    <div>
-      
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
-    </div>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://zmxqs.github.io">向北方的个人博客</a></h3>
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
         
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      向北方的个人博客
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://zmxqs.github.io/atom.xml" target="_blank">RSS</a>
-    </div>
-  </div>
-</div>
-
-
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">数论四大定理的证明与部分应用（含算术基本定理）</h2>
-            <div class="post-date">2020-03-01</div>
+          <li>
             
-            <div class="post-content" v-pre>
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>数论四大定理的证明与部分应用（含算术基本定理）</h1>
+            <p class="article-meta">
+              2020-03-01
+              
+                <a href="https://zmxqs.github.io/tag/WzP8kWsUh/" class="badge secondary">
+                  数论
+                </a>
+              
+            </p>
+            
+            <div class="post-content">
               <p>首先声明：下文中所有的类似”因数“”整数“等的字眼，除特别说明，全部是对于正数而言，不包括负数或者是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>。</p>
 <h3 id="case-1-欧拉定理">Case 1. 欧拉定理</h3>
 <p>欧拉定理即：</p>
@@ -461,55 +455,248 @@ x \equiv a_n \pmod {m_n}
 <p>这在数学域、计算机域都有极大的应用，可以将多个同余方程式合并为一个同余方程式，在解方程组时提供了极大的便利。</p>
 
             </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://zmxqs.github.io/tag/WzP8kWsUh/" class="tag">
-                    数论
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://zmxqs.github.io/post/yi-cuo-ji/">
-                  <h3 class="post-title">
-                    易错集
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-              
-                <div id="gitalk-container" data-aos="fade-in"></div>
-              
-
-              
-            
-
-          </div>
-
+          </article>
         </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://zmxqs.github.io/post/yi-cuo-ji/">
+                <h3 class="post-title">
+                  易错集
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
       </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://zmxqs.github.io/images/avatar.png?v=1627476185293" class="no-responsive avatar">
+    <div class="text-muted">向北方的个人博客</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://zmxqs.github.io/post/jiang-bo-ke-ban-zhi-csdn/">将博客搬至CSDN</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://zmxqs.github.io/post/luo-gu-p2568-gcd-ti-jie/">洛谷 P2568 GCD 题解</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://zmxqs.github.io/post/luo-gu-p1438-wu-liao-de-shu-lie-ti-jie/">洛谷 P1438 无聊的数列 题解</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://zmxqs.github.io/post/luo-gu-p5658-gua-hao-shu-ti-jie/">洛谷 P5658 括号树 题解</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://zmxqs.github.io/post/zi-fu-chuan-bi-ji/">字符串笔记</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://zmxqs.github.io/post/swtr-04-sweet-round-04-you-ji/">「SWTR-04」Sweet Round 04 游记</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://zmxqs.github.io/post/bei-fang-bian-cheng-you-xi-ji-he-div-1-sao-lei/">北方编程游戏集合 div 1 扫雷</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://zmxqs.github.io/post/b-round-1-t6-zwc-yu-zhi-hui-shi-ti-jie/">B Round 1 T3 zwc与指挥使 题解</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://zmxqs.github.io/post/b-round-1-t3-xiao-shen-yu-yu-lian-xu-shu-ti-jie/">B Round 1 T2 小神鱼与连续数 题解</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://zmxqs.github.io/post/b-round-1-t2-noip-yu-ping-heng-shu-ti-jie/">B Round 1 T1 noip与平衡树 题解</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://zmxqs.github.io/tag/BysiB2BSE/" class="badge secondary">
+          素数
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/WzP8kWsUh/" class="badge warning">
+          数论
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/TBDQaYadv/" class="badge secondary">
+          差分
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/MK6HeZPIe/" class="badge ">
+          线段树
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/--W3rwLN6/" class="badge secondary">
+          树
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/FujxeuKNN/" class="badge success">
+          字符串
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/xhUnVwUPj/" class="badge warning">
+          KMP
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/iUrSPPwbcL/" class="badge warning">
+          字典树
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/DuQsxvVl1/" class="badge success">
+          模拟赛游记
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/IwhkMPgQt/" class="badge secondary">
+          树状数组
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/tm3pTdjxo/" class="badge secondary">
+          阶乘
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/Sigk9V7f6/" class="badge secondary">
+          最大公因数
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/SbBf-Gk5v/" class="badge warning">
+          矩阵
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/6KMT93_CZ/" class="badge ">
+          算法复杂度
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/ufaDYn4j2/" class="badge secondary">
+          动态规划
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/j_NKhsyY9/" class="badge warning">
+          贪心
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/uyTwek3J2/" class="badge success">
+          分块
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/4g2QMjTjA/" class="badge secondary">
+          模拟赛题解
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://zmxqs.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
     </div>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
 <script type="application/javascript">
 
 AOS.init();
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+hljs.initHighlightingOnLoad()
 
 </script>
-
-
 
 
 

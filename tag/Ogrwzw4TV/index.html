@@ -4,65 +4,128 @@
     <meta charset="utf-8" >
 
 <title>自己出的题目 题解 | 向北方的个人博客</title>
+<meta name="description" content="向北方的个人博客">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://zmxqs.github.io/favicon.ico?v=1627476185293">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://zmxqs.github.io/favicon.ico?v=1627475876798">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://zmxqs.github.io/styles/main.css">
 
 
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
 
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
-
-    <meta name="description" content="向北方的个人博客">
   </head>
   <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://zmxqs.github.io">
-        <img src="https://zmxqs.github.io/images/avatar.png?v=1627475876798" class="site-logo">
-        <h1 class="site-title">向北方的个人博客</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
-    </div>
-    <div>
-      
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://zmxqs.github.io">向北方的个人博客</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
         
-          <a href="/" class="site-nav">
-            首页
-          </a>
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
         
-      
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
         
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
         
-      
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
         
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
+      </ul>
     </div>
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <h2 class="current-tag">标签: 自己出的题目 题解</h2>
+          
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://zmxqs.github.io/post/zi-ji-de-ti-mu-ti-jie/">「ZROI」Round1 题解</a>
+    </h2>
+    <p class="article-meta">
+      2020-02-26
+      
+        <a href="https://zmxqs.github.io/tag/Ogrwzw4TV/" class="badge ">
+          自己出的题目 题解
+        </a>
+      
+    </p>
+    <p class="text-lead">
+      <h2 id="前记">前记</h2>
+<p>虽然本人是比赛出题的最多者，总负责人，但 <code>ZROI</code> 这个名字是团主出的。</p>
+<p>个人认为：不用反驳的 <strong>装弱 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">OI</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span></span></span></span></strong> ，至于 ”她“ 想表达什么我也不清楚。</p>
+<p>（其实题目很弱是对的）</p>
+<p>下面是本人出的几道 <strong>水题</strong> 的题解。</p>
+<h2 id="t1-百花竞放">T1. <a href="https://www.luogu.com.cn/problem/T117530">百花竞放</a></h2>
+<p>这道题目是个签到的题目。其实不用一些非常复杂的算法（像<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi><mi>F</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">FFT</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>）.</p>
+<p>直接用算“贡献”的方式写式子也是一个不错的选择。</p>
+<p>对于：</p>
+
+    </p>
+    <div class="row">
+      <a href="https://zmxqs.github.io/post/zi-ji-de-ti-mu-ti-jie/" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
+    </div>
+  </article>
+
+
+        </div>
+        <div class="row flex-edges">
+  
+  
+</div>
+
+      </div>
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://zmxqs.github.io/images/avatar.png?v=1627476185293" class="no-responsive avatar">
+    <div class="text-muted">向北方的个人博客</div>
     <div class="social-container">
       
         
@@ -76,69 +139,203 @@
         
       
     </div>
-    <div class="site-description">
-      向北方的个人博客
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
     </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://zmxqs.github.io/atom.xml" target="_blank">RSS</a>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://zmxqs.github.io/post/jiang-bo-ke-ban-zhi-csdn/">将博客搬至CSDN</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://zmxqs.github.io/post/luo-gu-p2568-gcd-ti-jie/">洛谷 P2568 GCD 题解</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://zmxqs.github.io/post/luo-gu-p1438-wu-liao-de-shu-lie-ti-jie/">洛谷 P1438 无聊的数列 题解</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://zmxqs.github.io/post/luo-gu-p5658-gua-hao-shu-ti-jie/">洛谷 P5658 括号树 题解</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://zmxqs.github.io/post/zi-fu-chuan-bi-ji/">字符串笔记</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://zmxqs.github.io/post/swtr-04-sweet-round-04-you-ji/">「SWTR-04」Sweet Round 04 游记</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://zmxqs.github.io/post/bei-fang-bian-cheng-you-xi-ji-he-div-1-sao-lei/">北方编程游戏集合 div 1 扫雷</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://zmxqs.github.io/post/b-round-1-t6-zwc-yu-zhi-hui-shi-ti-jie/">B Round 1 T3 zwc与指挥使 题解</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://zmxqs.github.io/post/b-round-1-t3-xiao-shen-yu-yu-lian-xu-shu-ti-jie/">B Round 1 T2 小神鱼与连续数 题解</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://zmxqs.github.io/post/b-round-1-t2-noip-yu-ping-heng-shu-ti-jie/">B Round 1 T1 noip与平衡树 题解</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
     </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://zmxqs.github.io/tag/BysiB2BSE/" class="badge success">
+          素数
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/WzP8kWsUh/" class="badge warning">
+          数论
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/TBDQaYadv/" class="badge ">
+          差分
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/MK6HeZPIe/" class="badge secondary">
+          线段树
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/--W3rwLN6/" class="badge ">
+          树
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/FujxeuKNN/" class="badge warning">
+          字符串
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/xhUnVwUPj/" class="badge success">
+          KMP
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/iUrSPPwbcL/" class="badge warning">
+          字典树
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/DuQsxvVl1/" class="badge ">
+          模拟赛游记
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/IwhkMPgQt/" class="badge ">
+          树状数组
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/tm3pTdjxo/" class="badge success">
+          阶乘
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/Sigk9V7f6/" class="badge ">
+          最大公因数
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/SbBf-Gk5v/" class="badge success">
+          矩阵
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/6KMT93_CZ/" class="badge success">
+          算法复杂度
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/ufaDYn4j2/" class="badge warning">
+          动态规划
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/j_NKhsyY9/" class="badge warning">
+          贪心
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/uyTwek3J2/" class="badge secondary">
+          分块
+        </a>
+      
+        <a href="https://zmxqs.github.io/tag/4g2QMjTjA/" class="badge secondary">
+          模拟赛题解
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://zmxqs.github.io/atom.xml" target="_blank">RSS</a>
   </div>
 </div>
 
-
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <h2 class="current-tag">标签: 自己出的题目 题解</h2>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://zmxqs.github.io/post/zi-ji-de-ti-mu-ti-jie/">
-                  <h2 class="post-title">「ZROI」Round1 题解</h2>
-                </a>
-                <div class="post-date">
-                  2020-02-26
-                </div>
-                <div class="post-abstract">
-                  <h2 id="前记">前记</h2>
-<p>虽然本人是比赛出题的最多者，总负责人，但 <code>ZROI</code> 这个名字是团主出的。</p>
-<p>个人认为：不用反驳的 <strong>装弱 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">OI</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span></span></span></span></strong> ，至于 ”她“ 想表达什么我也不清楚。</p>
-<p>（其实题目很弱是对的）</p>
-<p>下面是本人出的几道 <strong>水题</strong> 的题解。</p>
-<h2 id="t1-百花竞放">T1. <a href="https://www.luogu.com.cn/problem/T117530">百花竞放</a></h2>
-<p>这道题目是个签到的题目。其实不用一些非常复杂的算法（像<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi><mi>F</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">FFT</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>）.</p>
-<p>直接用算“贡献”的方式写式子也是一个不错的选择。</p>
-<p>对于：</p>
-
-                </div>
-              </div>
-              
-            </article>
-          
-
-          <div class="pagination-container">
-  
-  
-</div>
-
-        </div>
-      </div>
     </div>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
 <script type="application/javascript">
 
 AOS.init();
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+hljs.initHighlightingOnLoad()
 
 </script>
-
-
 
 
 
