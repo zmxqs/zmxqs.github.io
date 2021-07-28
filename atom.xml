@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zmxqs.github.io</id>
-    <title>向北方的个人博客</title>
-    <updated>2021-07-28T14:46:18.502Z</updated>
+    <title>bifanwen的个人博客</title>
+    <updated>2021-07-28T14:47:48.494Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zmxqs.github.io"/>
     <link rel="self" href="https://zmxqs.github.io/atom.xml"/>
-    <subtitle>向北方的个人博客</subtitle>
+    <subtitle>bifanwen的个人博客</subtitle>
     <logo>https://zmxqs.github.io/images/avatar.png</logo>
     <icon>https://zmxqs.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2021, 向北方的个人博客</rights>
+    <rights>All rights reserved 2021, bifanwen的个人博客</rights>
     <entry>
         <title type="html"><![CDATA[关于我]]></title>
         <id>https://zmxqs.github.io/post/guan-yu-wo/</id>
